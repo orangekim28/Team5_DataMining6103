@@ -159,6 +159,7 @@ print("The F1 score is", f1_score(y_test, y_pred))
 ## Logistic Regression
 
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix 
 
 lr=LogisticRegression()
 lr.fit(X_train,y_train)
@@ -168,6 +169,16 @@ print("The accuracy is", accuracy_score(y_test, y_pred_2))
 print("The precision is", precision_score(y_test, y_pred_2))
 print("The recall is", recall_score(y_test, y_pred_2))
 print("The F1 score is", f1_score(y_test, y_pred_2))
+
+
+# classification report
+print(classification_report(y_test, y_pred_2))
+# confusion matrix
+fig, ax = plt. subplots ()
+sns.heatmap (confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
+ax.set_title ("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
 
 # %%
 
@@ -184,4 +195,5 @@ print("The accuracy is", accuracy_score(y_test, y_pred_3))
 print("The precision is", precision_score(y_test, y_pred_3))
 print("The recall is", recall_score(y_test, y_pred_3))
 print("The F1 score is", f1_score(y_test, y_pred_3))
+
 # %%
