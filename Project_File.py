@@ -255,17 +255,9 @@ knn.fit(X_train,y_train.ravel())
 
 # %%
 
-from sklearn.externals import joblib
-
-# save the model to disk
-filename = 'finalized_model.sav'
-joblib.dump(knn, filename)
-['finalized_model.sav']
-# load the model from disk
-knn = joblib.load(filename)
-# predicting labels for testing set
-knn_predicted_test_labels=knn.predict(X_test)
-y_pred_4=knn.predict(X_test)
+knn = KNeighborsClassifier(n_neighbors = 4) 
+knn.fit(X_train,y_train)
+y_pred_4 = knn.predict(X_test)
 
 # classification report
 print(classification_report(y_test, y_pred_4))
@@ -275,4 +267,6 @@ sns.heatmap (confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, a
 ax.set_title ("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
+
+
 # %%
