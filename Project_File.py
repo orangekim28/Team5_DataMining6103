@@ -45,3 +45,15 @@ CCFD_DATA.drop_duplicates(keep=False,inplace=True)
 # Re-checking for Duplicate Cells
 
 CCFD_DATA.duplicated().sum()
+
+#%%
+# let's check the class column
+
+CCFD_DATA['Class'].value_counts()
+
+#%%
+# Column Data Type Assessment
+
+CCFD_DATA.dtypes.value_counts()
+
+# %%
