@@ -177,9 +177,11 @@ print("The F1 score is", f1_score(y_test, y_pred_2))
 from sklearn.tree import DecisionTreeRegressor
 
 dt=DecisionTreeRegressor()
+dt.fit(X_train,y_train)
+y_pred_3=dt.predict(X_test)
 
-model3=dt.fit(X_train,y_train)
-prediction3=model3.predict(X_test)
-accuracy_score(y_test,prediction3)
-
+print("The accuracy is", accuracy_score(y_test, y_pred_3)) 
+print("The precision is", precision_score(y_test, y_pred_3))
+print("The recall is", recall_score(y_test, y_pred_3))
+print("The F1 score is", f1_score(y_test, y_pred_3))
 # %%
