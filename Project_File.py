@@ -139,11 +139,19 @@ X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=1
 ## Model 1
 ## Random Forest Classifier
 from sklearn.ensemble import RandomForestClassifier
-rfc=RandomForestClassifier()
-model=rfc.fit(X_train,y_train)
-prediction=model.predict(X_test)
-from sklearn.metrics import accuracy_score
-accuracy_score(y_test,prediction)
+
+# Fit and predict
+rfc = RandomForestClassifier() 
+rfc.fit(X_train, y_train) 
+y_pred = rfc.predict(X_test)
+
+# For the performance let's use some metrics from SKLEARN module
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+  
+print("The accuracy is", accuracy_score(y_test, y_pred)) 
+print("The precision is", precision_score(y_test, y_pred))
+print("The recall is", recall_score(y_test, y_pred))
+print("The F1 score is", f1_score(y_test, y_pred))
 
 # %%
 
@@ -152,13 +160,10 @@ accuracy_score(y_test,prediction)
 
 from sklearn.linear_model import LogisticRegression
 
-X1=data_under.drop(['Class'],axis=1)
-y1=data_under['Class']
-X1_train,X1_test,y1_train,y1_test=train_test_split(X1,y1,test_size=0.3,random_state=123)
 lr=LogisticRegression()
-model2=lr.fit(X1_train,y1_train)
-prediction2=model2.predict(X1_test)
-accuracy_score(y1_test,prediction2)
+model2=lr.fit(X_train,y_train)
+prediction2=model2.predict(X_test)
+accuracy_score(y_test,prediction2)
 
 # %%
 
