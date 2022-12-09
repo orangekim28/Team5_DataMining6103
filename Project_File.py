@@ -16,4 +16,12 @@ import pandas as pd
 CCFD_DATA=pd.read_csv('creditcard.csv')
 CCFD_DATA.shape
 
-# %%
+#%%
+# Analyzing the DataFrame : Viewing the Data
+
+CCFD_DATA.head()
+
+#%%
+# Info about the data
+
+CCFD_DATA.info()
