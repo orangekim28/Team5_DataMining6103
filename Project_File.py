@@ -161,9 +161,13 @@ print("The F1 score is", f1_score(y_test, y_pred))
 from sklearn.linear_model import LogisticRegression
 
 lr=LogisticRegression()
-model2=lr.fit(X_train,y_train)
-prediction2=model2.predict(X_test)
-accuracy_score(y_test,prediction2)
+lr.fit(X_train,y_train)
+y_pred_2=lr.predict(X_test)
+
+print("The accuracy is", accuracy_score(y_test, y_pred_2)) 
+print("The precision is", precision_score(y_test, y_pred_2))
+print("The recall is", recall_score(y_test, y_pred_2))
+print("The F1 score is", f1_score(y_test, y_pred_2))
 
 # %%
 
