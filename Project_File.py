@@ -214,3 +214,20 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
 # %%
+
+## KNN Model
+
+from sklearn.neighbors import KNeighborsClassifier
+
+neighbours = np.arange(1,25)
+
+for i,k in enumerate(neighbours):
+    #Setup a knn classifier with k neighbors
+    knn=KNeighborsClassifier(n_neighbors=k,algorithm="kd_tree",n_jobs=-1)
+    
+    #Fit the model
+    knn.fit(X_train,y_train.ravel())
+    y_pred_4=knn.predict(X_test)
+
+
+# %%
