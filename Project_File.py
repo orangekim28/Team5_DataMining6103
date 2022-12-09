@@ -170,7 +170,6 @@ print("The precision is", precision_score(y_test, y_pred_2))
 print("The recall is", recall_score(y_test, y_pred_2))
 print("The F1 score is", f1_score(y_test, y_pred_2))
 
-
 # classification report
 print(classification_report(y_test, y_pred_2))
 # confusion matrix
