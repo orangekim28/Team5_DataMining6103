@@ -204,4 +204,13 @@ print("The precision is", precision_score(y_test, y_pred_3))
 print("The recall is", recall_score(y_test, y_pred_3))
 print("The F1 score is", f1_score(y_test, y_pred_3))
 
+# classification report
+print(classification_report(y_test, y_pred_3))
+# confusion matrix
+fig, ax = plt. subplots ()
+sns.heatmap (confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
+ax.set_title ("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
+
 # %%
