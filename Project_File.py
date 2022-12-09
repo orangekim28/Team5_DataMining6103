@@ -67,3 +67,8 @@ print("Number of Fraud transactions: ", fraud)
 print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
 
 # %%
+# Summary Statistics
+
+CCFD_DATA.describe()
+
+# %%
