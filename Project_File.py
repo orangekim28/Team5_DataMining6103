@@ -175,12 +175,11 @@ print("The F1 score is", f1_score(y_test, y_pred_2))
 ## Decision Tree
 
 from sklearn.tree import DecisionTreeRegressor
-X2=data_under.drop(['Class'],axis=1)
-y2=data_under['Class']
+
 dt=DecisionTreeRegressor()
-X2_train,X2_test,y2_train,y2_test=train_test_split(X2,y2,test_size=0.3,random_state=123)
-model3=dt.fit(X2_train,y2_train)
-prediction3=model3.predict(X2_test)
-accuracy_score(y2_test,prediction3)
+
+model3=dt.fit(X_train,y_train)
+prediction3=model3.predict(X_test)
+accuracy_score(y_test,prediction3)
 
 # %%
