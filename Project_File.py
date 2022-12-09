@@ -25,3 +25,23 @@ CCFD_DATA.head()
 # Info about the data
 
 CCFD_DATA.info()
+
+#%%
+# Cleaning Data : Checking for Empty Cells
+
+CCFD_DATA.isnull().values.sum()
+
+#%%
+# Checking for Duplicate Cells
+
+CCFD_DATA.duplicated().sum()
+
+#%%
+# Removing Duplicates
+
+CCFD_DATA.drop_duplicates(keep=False,inplace=True)
+
+#%%
+# Re-checking for Duplicate Cells
+
+CCFD_DATA.duplicated().sum()
