@@ -245,7 +245,28 @@ plt.xlabel('Number of neighbors')
 plt.ylabel('Accuracy')
 plt.show()
 
+
+idx = np.where(test_accuracy == max(test_accuracy))
+x = neighbours[idx]
+
+#k_nearest_neighbours_classification
+knn=KNeighborsClassifier(n_neighbors=x[0],algorithm="kd_tree",n_jobs=-1)
+knn.fit(X_train,y_train.ravel())
+
 # %%
+
+from sklearn.externals import joblib
+
+# save the model to disk
+filename = 'finalized_model.sav'
+joblib.dump(knn, filename)
+['finalized_model.sav']
+# load the model from disk
+knn = joblib.load(filename)
+# predicting labels for testing set
+knn_predicted_test_labels=knn.predict(X_test)
+y_pred_4=knn.predict(X_test)
+
 # classification report
 print(classification_report(y_test, y_pred_4))
 # confusion matrix
