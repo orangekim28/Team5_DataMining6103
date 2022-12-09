@@ -57,3 +57,13 @@ CCFD_DATA['Class'].value_counts()
 CCFD_DATA.dtypes.value_counts()
 
 # %%
+
+non_fraud = len(CCFD_DATA[CCFD_DATA.Class == 0])
+fraud = len(CCFD_DATA[CCFD_DATA.Class == 1])
+fraud_percent = (fraud / (fraud + non_fraud)) * 100
+
+print("Number of Genuine transactions: ", non_fraud)
+print("Number of Fraud transactions: ", fraud)
+print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
+
+# %%
