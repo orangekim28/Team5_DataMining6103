@@ -102,14 +102,44 @@ class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 print('class 0:', class_0.shape)
 print('class 1:', class_1.shape)
       
+      
+      
+      
+      
+      
+      
 # %%
 # Undersampling Technique
 class_0_under = class_0.sample(class_count_1)
 
-test_under = pd.concat([class_0_under, class_1], axis=0)
+data_under = pd.concat([class_0_under, class_1], axis=0)
 
-print("total class of 1 and0:",test_under['Class'].value_counts())
+print("total class of 1 and0:",data_under['Class'].value_counts())
 # plot the count after under-sampeling
-test_under['Class'].value_counts().plot(kind='bar', title='count (target)')
+data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
+
+# %%
+
+## Now we need to choose the variables for models. 
+## For that we are going to use correlation matrix.
+## Let's see how it goes
+
+plt.figure(figsize=(10,8))
+corr=data_under.corr()
+sns.heatmap(corr,cmap='BuPu')
+
+# %%
+
+from sklearn.model_selection import train_test_split
+
+X=data_under.drop(['Class'],axis=1)
+y=data_under['Class']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=123)
+from sklearn.ensemble import RandomForestClassifier
+rfc=RandomForestClassifier()
+model=rfc.fit(X_train,y_train)
+prediction=model.predict(X_test)
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test,prediction)
 
 # %%
