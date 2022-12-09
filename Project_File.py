@@ -220,6 +220,8 @@ ax.set_xlabel("Predicted")
 from sklearn.neighbors import KNeighborsClassifier
 
 neighbours = np.arange(1,25)
+train_accuracy =np.empty(len(neighbours))
+test_accuracy = np.empty(len(neighbours))
 
 for i,k in enumerate(neighbours):
     #Setup a knn classifier with k neighbors
@@ -227,7 +229,29 @@ for i,k in enumerate(neighbours):
     
     #Fit the model
     knn.fit(X_train,y_train.ravel())
-    y_pred_4=knn.predict(X_test)
+    
+    #Compute accuracy on the training set
+    train_accuracy[i] = knn.score(X_train, y_train.ravel())
+    
+    #Compute accuracy on the test set
+    test_accuracy[i] = knn.score(X_test, y_test.ravel()) 
 
+#Generate plot
+plt.title('k-NN Varying number of neighbors')
+plt.plot(neighbours, test_accuracy, label='Testing Accuracy')
+plt.plot(neighbours, train_accuracy, label='Training accuracy')
+plt.legend()
+plt.xlabel('Number of neighbors')
+plt.ylabel('Accuracy')
+plt.show()
 
+# %%
+# classification report
+print(classification_report(y_test, y_pred_4))
+# confusion matrix
+fig, ax = plt. subplots ()
+sns.heatmap (confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
+ax.set_title ("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
 # %%
