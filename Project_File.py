@@ -81,7 +81,7 @@ from pylab import rcParams
 
 # %%
 
-CCFD_DATA.hist(figsize=(20,20),color='lime')
+CCFD_DATA.hist(figsize=(20,20),color='blue')
 plt.show()
 
 # %%
