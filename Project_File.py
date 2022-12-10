@@ -91,20 +91,22 @@ print('class 1:', class_1.shape)
 # Undersampling Technique
 class_0_under = class_0.sample(class_count_1)
 data_under = pd.concat([class_0_under, class_1], axis=0)
-print("total class of 1 and0:",data_under['Class'].value_counts())
+print("total class of 1 and 0:",data_under['Class'].value_counts())
 
 # plot the count after under-sampeling
 data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
 
 #
-
 #%%
 # Oversampling Technique
 class_1_over = class_1.sample(class_count_0, replace = True)
 data_over = pd.concat([class_1_over, class_0], axis=0)
 print("Total class of 1 and 0:", data_under['Class'].value_counts())
+
+# plot the count after over-sampeling
 data_over['Class'].value_counts().plot(kind='bar', title='count')
 
+#
 # %%
 # Exploratory Data Analysis
 
@@ -125,7 +127,6 @@ plt.ylabel('Rel freq.')
 plt.show()
 
 #
-
 #%%
 plt.hist(data_over.Amount, label='time', edgecolor='black', linewidth=1)
 plt.xlabel('Amount')
@@ -134,12 +135,27 @@ plt.show()
 
 #
 #%%
+genuine = data_under[data_under['Class'] == 0]
+fraud = data_under[data_under['Class'] == 1]
+
+rcParams['figure.figsize'] = 16, 8
+f,(ax1, ax2) = plt.subplots(2, 1, sharex=True)
+f.suptitle('Amount vs Time of transaction for Undersampling')
+ax1.scatter(fraud.Time, fraud.Amount)
+ax1.set_title('Fraud')
+ax2.scatter(genuine.Time, genuine.Amount)
+ax2.set_title('Genuine')
+plt.xlabel('Time (in seconds)')
+plt.ylabel('Amount')
+plt.show()
+
+#%%
 genuine = data_over[data_over['Class'] == 0]
 fraud = data_over[data_over['Class'] == 1]
 
 rcParams['figure.figsize'] = 16, 8
 f,(ax1, ax2) = plt.subplots(2, 1, sharex=True)
-f.suptitle('Amount vs Time of transaction')
+f.suptitle('Amount vs Time of transaction for Oversampling')
 ax1.scatter(fraud.Time, fraud.Amount)
 ax1.set_title('Fraud')
 ax2.scatter(genuine.Time, genuine.Amount)
@@ -243,6 +259,7 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
 # %%
+# Model 4
 # KNN Model
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -286,6 +303,11 @@ knn.fit(X_train,y_train.ravel())
 knn = KNeighborsClassifier(n_neighbors = 4) 
 knn.fit(X_train,y_train)
 y_pred_4 = knn.predict(X_test)
+
+print("The accuracy is", accuracy_score(y_test, y_pred_4)) 
+print("The precision is", precision_score(y_test, y_pred_4))
+print("The recall is", recall_score(y_test, y_pred_4))
+print("The F1 score is", f1_score(y_test, y_pred_4))
 
 # Classification report
 print(classification_report(y_test, y_pred_4))
