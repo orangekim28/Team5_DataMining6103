@@ -98,6 +98,7 @@ plt.xticks([0,1],['Genuine', 'Fraud'])
 class_count_0, class_count_1 = CCFD_DATA['Class'].value_counts()
 
 # Separate class
+# It takes value 1 in case of fraud and 0 otherwise
 class_0 = CCFD_DATA[CCFD_DATA['Class'] == 0]
 class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 # print the shape of the class
