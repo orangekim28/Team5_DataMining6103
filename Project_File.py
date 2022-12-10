@@ -72,25 +72,6 @@ print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
 CCFD_DATA.describe()
 
 # %%
-# Exploratory Data Analysis
-
-# Importing Libraries
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pylab import rcParams
-
-# %%
-
-CCFD_DATA.hist(figsize=(20,20),color='blue')
-plt.show()
-
-# %%
-
-CCFD_DATA['Class'].value_counts().plot(kind='bar')
-plt.xticks([0,1],['Genuine', 'Fraud'])
-
-#
-# %%
 ## Since the data is highly imbalanced, we will move ahead with Undersampling/Upsampling.
 ### But inorder to see which method works for the data, let's create model using upsampled and undersampled data.
 ## We need balanced data!!
@@ -114,6 +95,58 @@ print("total class of 1 and0:",data_under['Class'].value_counts())
 
 # plot the count after under-sampeling
 data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
+
+#
+
+#%%
+# Oversampling Technique
+class_1_over = class_1.sample(class_count_0, replace = True)
+data_over = pd.concat([class_1_over, class_0], axis=0)
+print("Total class of 1 and 0:", data_under['Class'].value_counts())
+data_over['Class'].value_counts().plot(kind='bar', title='count')
+
+# %%
+# Exploratory Data Analysis
+
+# Importing Libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pylab import rcParams
+
+# %%
+
+data_over.hist(figsize=(20,20),color='blue')
+plt.show()
+
+#%%
+plt.hist(data_over.Time, label='time', edgecolor='black', linewidth=1)
+plt.xlabel('Time (in seconds)')
+plt.ylabel('Rel freq.')
+plt.show()
+
+#
+
+#%%
+plt.hist(data_over.Amount, label='time', edgecolor='black', linewidth=1)
+plt.xlabel('Amount')
+plt.ylabel('Rel freq.')
+plt.show()
+
+#
+#%%
+genuine = data_over[data_over['Class'] == 0]
+fraud = data_over[data_over['Class'] == 1]
+
+rcParams['figure.figsize'] = 16, 8
+f,(ax1, ax2) = plt.subplots(2, 1, sharex=True)
+f.suptitle('Amount vs Time of transaction')
+ax1.scatter(fraud.Time, fraud.Amount)
+ax1.set_title('Fraud')
+ax2.scatter(genuine.Time, genuine.Amount)
+ax2.set_title('Genuine')
+plt.xlabel('Time (in seconds)')
+plt.ylabel('Amount')
+plt.show()
 
 # %%
 # Correlation matrix
