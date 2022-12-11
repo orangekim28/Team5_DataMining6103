@@ -332,8 +332,6 @@ X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=1
 # Model 1
 ## Random Forest Classifier : Over Sampling
 
-from sklearn.ensemble import RandomForestClassifier
-
 # Fit and predict
 rfc = RandomForestClassifier() 
 rfc.fit(X_train, y_train) 
@@ -361,9 +359,6 @@ ax.set_xlabel("Predicted")
 # Model 2
 ## Logistic Regression : Over Sampling
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix 
-
 lr=LogisticRegression()
 lr.fit(X_train,y_train)
 y_pred_2=lr.predict(X_test)
@@ -387,8 +382,6 @@ ax.set_xlabel("Predicted")
 # Model 3
 ## Decision Tree : Over Sampling
 
-from sklearn.tree import DecisionTreeRegressor
-
 dt=DecisionTreeRegressor()
 dt.fit(X_train,y_train)
 y_pred_3=dt.predict(X_test)
@@ -411,8 +404,6 @@ ax.set_xlabel("Predicted")
 # %%
 # Model 4
 # KNN Model : Over Sampling
-
-from sklearn.neighbors import KNeighborsClassifier
 
 neighbours = np.arange(1,25)
 train_accuracy =np.empty(len(neighbours))
