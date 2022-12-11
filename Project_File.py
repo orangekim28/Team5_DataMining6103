@@ -202,9 +202,9 @@ print("The F1 score is", f1_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -227,8 +227,8 @@ print("The F1 score is", f1_score(y_test, y_pred_2))
 print(classification_report(y_test, y_pred_2))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
 ax.set_title ("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
@@ -252,9 +252,9 @@ print("The F1 score is", f1_score(y_test, y_pred_3))
 print(classification_report(y_test, y_pred_3))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -313,9 +313,9 @@ print("The F1 score is", f1_score(y_test, y_pred_4))
 print(classification_report(y_test, y_pred_4))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -349,9 +349,9 @@ print("The F1 score is", f1_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -372,9 +372,9 @@ print("The F1 score is", f1_score(y_test, y_pred_2))
 print(classification_report(y_test, y_pred_2))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -395,9 +395,9 @@ print("The F1 score is", f1_score(y_test, y_pred_3))
 print(classification_report(y_test, y_pred_3))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
@@ -454,9 +454,9 @@ print("The F1 score is", f1_score(y_test, y_pred_4))
 print(classification_report(y_test, y_pred_4))
 
 # Confusion matrix
-fig, ax = plt. subplots ()
-sns.heatmap (confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
-ax.set_title ("Confusion Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
