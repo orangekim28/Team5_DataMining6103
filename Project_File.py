@@ -89,14 +89,26 @@ class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 print('class 0:', class_0.shape)
 print('class 1:', class_1.shape)
 
-
-
+#
 #%%
 # EDA for Unbalanced Data
 CCFD_DATA.hist(figsize=(20,20),color='blue')
 plt.show()
 
-#   
+# %%
+# Correlation matrix before Sampling
+plt.figure(figsize=(10,8))
+corr=CCFD_DATA.corr()
+sns.heatmap(corr,cmap='BuPu')
+
+# %%
+# Splitting the Data before Sampling
+from sklearn.model_selection import train_test_split
+
+X=CCFD_DATA.drop(['Class'],axis=1)
+y=CCFD_DATA['Class']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=123)
+
 # %%
 # Undersampling Technique
 class_0_under = class_0.sample(class_count_1)
