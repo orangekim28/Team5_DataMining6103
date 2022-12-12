@@ -449,7 +449,7 @@ knn.fit(X_train,y_train.ravel())
 
 # %%
 
-knn = KNeighborsClassifier(n_neighbors = 4) 
+knn = KNeighborsClassifier(n_neighbors = 1) 
 knn.fit(X_train,y_train)
 y_pred_4 = knn.predict(X_test)
 
