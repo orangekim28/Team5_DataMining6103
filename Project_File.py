@@ -110,13 +110,11 @@ data_over['Class'].value_counts().plot(kind='bar', title='count')
 # %%
 # Exploratory Data Analysis
 
-# Importing Libraries
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pylab import rcParams
 
 # %%
-
 data_over.hist(figsize=(20,20),color='blue')
 plt.show()
 
