@@ -89,24 +89,180 @@ class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 print('class 0:', class_0.shape)
 print('class 1:', class_1.shape)
 
-
-
+#
 #%%
 # EDA for Unbalanced Data
 CCFD_DATA.hist(figsize=(20,20),color='blue')
 plt.show()
 
-#   
+# %%
+# Correlation matrix before Sampling
+plt.figure(figsize=(10,8))
+corr=CCFD_DATA.corr()
+sns.heatmap(corr,cmap='BuPu')
+
+# %%
+# Splitting the Data before Sampling
+from sklearn.model_selection import train_test_split
+
+X=CCFD_DATA.drop(['Class'],axis=1)
+y=CCFD_DATA['Class']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=123)
+
+#%%
+# Model 1
+## Random Forest Classifier : Before Sampling
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix 
+
+# Fit and predict
+rfc = RandomForestClassifier() 
+rfc.fit(X_train, y_train) 
+y_pred = rfc.predict(X_test)
+
+# For the performance let's use some metrics from SKLEARN module
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+  
+print("The accuracy is", accuracy_score(y_test, y_pred)) 
+print("The precision is", precision_score(y_test, y_pred))
+print("The recall is", recall_score(y_test, y_pred))
+print("The F1 score is", f1_score(y_test, y_pred))
+
+# Classification report
+print(classification_report(y_test, y_pred))
+
+# Confusion matrix
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
+
+# %%
+# Model 2
+## Logistic Regression : Before Sampling
+
+from sklearn.linear_model import LogisticRegression
+
+lr=LogisticRegression()
+lr.fit(X_train,y_train)
+y_pred_2=lr.predict(X_test)
+
+print("The accuracy is", accuracy_score(y_test, y_pred_2)) 
+print("The precision is", precision_score(y_test, y_pred_2))
+print("The recall is", recall_score(y_test, y_pred_2))
+print("The F1 score is", f1_score(y_test, y_pred_2))
+
+# Classification report
+print(classification_report(y_test, y_pred_2))
+
+# Confusion matrix
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_2, normalize='true'), annot=True, ax=ax)
+ax.set_title ("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
+
+# %%
+# Model 3
+## Decision Tree : Before Sampling
+
+from sklearn.tree import DecisionTreeRegressor
+
+dt=DecisionTreeRegressor()
+dt.fit(X_train,y_train)
+y_pred_3=dt.predict(X_test)
+
+print("The accuracy is", accuracy_score(y_test, y_pred_3)) 
+print("The precision is", precision_score(y_test, y_pred_3))
+print("The recall is", recall_score(y_test, y_pred_3))
+print("The F1 score is", f1_score(y_test, y_pred_3))
+
+# Classification report
+print(classification_report(y_test, y_pred_3))
+
+# Confusion matrix
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_3, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
+
+# %%
+# Model 4
+# KNN Model : Before Sampling
+
+from sklearn.neighbors import KNeighborsClassifier
+
+neighbours = np.arange(1,25)
+train_accuracy =np.empty(len(neighbours))
+test_accuracy = np.empty(len(neighbours))
+
+for i,k in enumerate(neighbours):
+    #Setup a knn classifier with k neighbors
+    knn=KNeighborsClassifier(n_neighbors=k,algorithm="kd_tree",n_jobs=-1)
+    
+    #Fit the model
+    knn.fit(X_train,y_train.ravel())
+    
+    #Compute accuracy on the training set
+    train_accuracy[i] = knn.score(X_train, y_train.ravel())
+    
+    #Compute accuracy on the test set
+    test_accuracy[i] = knn.score(X_test, y_test.ravel()) 
+
+#Generate plot
+plt.title('k-NN Varying number of neighbors')
+plt.plot(neighbours, test_accuracy, label='Testing Accuracy')
+plt.plot(neighbours, train_accuracy, label='Training accuracy')
+plt.legend()
+plt.xlabel('Number of neighbors')
+plt.ylabel('Accuracy')
+plt.show()
+
+
+idx = np.where(test_accuracy == max(test_accuracy))
+x = neighbours[idx]
+
+#k_nearest_neighbours_classification
+knn=KNeighborsClassifier(n_neighbors=x[0],algorithm="kd_tree",n_jobs=-1)
+knn.fit(X_train,y_train.ravel())
+
+# %%
+
+knn = KNeighborsClassifier(n_neighbors = 4) 
+knn.fit(X_train,y_train)
+y_pred_4 = knn.predict(X_test)
+
+print("The accuracy is", accuracy_score(y_test, y_pred_4)) 
+print("The precision is", precision_score(y_test, y_pred_4))
+print("The recall is", recall_score(y_test, y_pred_4))
+print("The F1 score is", f1_score(y_test, y_pred_4))
+
+# Classification report
+print(classification_report(y_test, y_pred_4))
+
+# Confusion matrix
+fig, ax = plt.subplots()
+sns.heatmap(confusion_matrix(y_test, y_pred_4, normalize='true'), annot=True, ax=ax)
+ax.set_title("Confusion Matrix")
+ax.set_ylabel("Real Value")
+ax.set_xlabel("Predicted")
+
+#
 # %%
 # Undersampling Technique
 class_0_under = class_0.sample(class_count_1)
 data_under = pd.concat([class_0_under, class_1], axis=0)
 print("total class of 1 and 0:",data_under['Class'].value_counts())
 
-# plot the count after under-sampeling
+# plot the count after under-sampling
 data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
 
 #%%
+# Exploratory Data Analysis for Undersampling
+
 data_under.hist(figsize=(20,20),color='violet')
 plt.show()
 
@@ -117,7 +273,7 @@ class_1_over = class_1.sample(class_count_0, replace = True)
 data_over = pd.concat([class_1_over, class_0], axis=0)
 print("Total class of 1 and 0:", data_under['Class'].value_counts())
 
-# plot the count after over-sampeling
+# plot the count after over-sampling
 data_over['Class'].value_counts().plot(kind='bar', title='count')
 
 #
@@ -178,7 +334,7 @@ corr=data_under.corr()
 sns.heatmap(corr,cmap='BuPu')
 
 # %%
-# Splitting the Data
+# Splitting the Data for Under Sampling
 from sklearn.model_selection import train_test_split
 
 X=data_under.drop(['Class'],axis=1)
@@ -187,7 +343,7 @@ X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=1
 
 # %%
 # Model 1
-## Random Forest Classifier
+## Random Forest Classifier : Under Sampling
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix 
@@ -217,7 +373,7 @@ ax.set_xlabel("Predicted")
 
 # %%
 # Model 2
-## Logistic Regression
+## Logistic Regression : Under Sampling
 
 from sklearn.linear_model import LogisticRegression
 
@@ -242,7 +398,7 @@ ax.set_xlabel("Predicted")
 
 # %%
 # Model 3
-## Decision Tree
+## Decision Tree : Under Sampling
 
 from sklearn.tree import DecisionTreeRegressor
 
@@ -267,7 +423,7 @@ ax.set_xlabel("Predicted")
 
 # %%
 # Model 4
-# KNN Model
+# KNN Model : Under Sampling
 
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -388,7 +544,6 @@ ax.set_xlabel("Predicted")
 # %%
 # Model 3
 ## Decision Tree : Over Sampling
-from sklearn.tree import DecisionTreeRegressor
 
 dt=DecisionTreeRegressor()
 dt.fit(X_train,y_train)
