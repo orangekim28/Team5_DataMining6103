@@ -85,7 +85,14 @@ class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 # print the shape of the class
 print('class 0:', class_0.shape)
 print('class 1:', class_1.shape)
-      
+
+
+
+#%%
+# EDA for Unbalanced Data
+CCFD_DATA.hist(figsize=(20,20),color='blue')
+plt.show()
+
 #   
 # %%
 # Undersampling Technique
