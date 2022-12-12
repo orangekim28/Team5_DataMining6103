@@ -258,13 +258,7 @@ data_under = pd.concat([class_0_under, class_1], axis=0)
 print("total class of 1 and 0:",data_under['Class'].value_counts())
 
 # plot the count after under-sampling
-data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
-
-#%%
-# Exploratory Data Analysis for Undersampling
-
-data_under.hist(figsize=(20,20),color='violet')
-plt.show()
+# data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
 
 #
 #%%
@@ -274,7 +268,7 @@ data_over = pd.concat([class_1_over, class_0], axis=0)
 print("Total class of 1 and 0:", data_under['Class'].value_counts())
 
 # plot the count after over-sampling
-data_over['Class'].value_counts().plot(kind='bar', title='count')
+# data_over['Class'].value_counts().plot(kind='bar', title='count')
 
 #
 # %%
@@ -291,7 +285,7 @@ plt.show()
 
 #
 #%%
-plt.hist(data_over.Amount, label='time', edgecolor='black', linewidth=1)
+plt.hist(data_over.Amount, label='Amount', edgecolor='black', linewidth=1)
 plt.xlabel('Amount')
 plt.ylabel('Rel freq.')
 plt.show()
