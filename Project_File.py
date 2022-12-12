@@ -388,6 +388,7 @@ ax.set_xlabel("Predicted")
 # %%
 # Model 3
 ## Decision Tree : Over Sampling
+from sklearn.tree import DecisionTreeRegressor
 
 dt=DecisionTreeRegressor()
 dt.fit(X_train,y_train)
