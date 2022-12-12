@@ -9,6 +9,9 @@
 
 import numpy as np 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pylab import rcParams
 
 #%%
 # Load the Credit Card Dataset into a DataFrame (CCFD_DATA)
@@ -103,6 +106,10 @@ print("total class of 1 and 0:",data_under['Class'].value_counts())
 # plot the count after under-sampeling
 data_under['Class'].value_counts().plot(kind='bar', title='count (target)')
 
+#%%
+data_under.hist(figsize=(20,20),color='violet')
+plt.show()
+
 #
 #%%
 # Oversampling Technique
@@ -115,14 +122,9 @@ data_over['Class'].value_counts().plot(kind='bar', title='count')
 
 #
 # %%
-# Exploratory Data Analysis
+# Exploratory Data Analysis for Oversampling
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pylab import rcParams
-
-# %%
-data_over.hist(figsize=(20,20),color='blue')
+data_over.hist(figsize=(20,20),color='green')
 plt.show()
 
 #%%
