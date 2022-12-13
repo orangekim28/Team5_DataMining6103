@@ -154,6 +154,14 @@ X=CCFD_DATA.drop(['Class'],axis=1)
 y=CCFD_DATA['Class']
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=123)
 
+
+# %%
+# Correlation matrix before Sampling
+plt.figure(figsize=(10,8))
+corr=CCFD_DATA.corr()
+sns.heatmap(corr,cmap='BuPu')
+
+
 #%%
 # Model 1
 ## Random Forest Classifier : Before Sampling
@@ -271,6 +279,7 @@ knn=KNeighborsClassifier(n_neighbors=x[0],algorithm="kd_tree",n_jobs=-1)
 knn.fit(X_train,y_train.ravel())
 
 # %%
+# KNN results
 
 knn = KNeighborsClassifier(n_neighbors = 2) 
 knn.fit(X_train,y_train)
@@ -325,12 +334,6 @@ print('class 1:', class_1.shape)
 #
 
 
-# %%
-# Correlation matrix before Sampling
-plt.figure(figsize=(10,8))
-corr=CCFD_DATA.corr()
-sns.heatmap(corr,cmap='BuPu')
-
 #
 # %%
 # Undersampling Technique
@@ -366,7 +369,7 @@ plt.show()
 
 
 # %%
-# Correlation matrix
+# Correlation matrix after Under Sampling
 plt.figure(figsize=(10,8))
 corr=data_under.corr()
 sns.heatmap(corr,cmap='BuPu')
@@ -573,6 +576,13 @@ ax2.set_title('Genuine')
 plt.xlabel('Time (in seconds)')
 plt.ylabel('Amount')
 plt.show()
+
+
+#%%
+# Correlation matrix after Over Sampling
+plt.figure(figsize=(10,8))
+corr=data_over.corr()
+sns.heatmap(corr,cmap='BuPu')
 
 # %%
 # Splitting the Data : Over Sampling
