@@ -114,6 +114,7 @@ amount = data_plot['Amount']
 data_plot.drop(labels=['Amount'], axis=1, inplace = True)
 data_plot.insert(0, 'Amount', amount)
 
+
 # Plot the distributions of the features
 columns = data_plot.iloc[:,0:30].columns
 plt.figure(figsize=(12,30*4))
@@ -133,19 +134,7 @@ plt.show()
 CCFD_DATA.hist(figsize=(20,20),color='blue')
 plt.show()
 
-
-
-
-
-
 ###########################
-
-
-
-
-
-
-
 
 # %%
 # Splitting the Data before Sampling
@@ -241,8 +230,6 @@ ax.set_xlabel("Predicted")
 # %%
 # Model 4
 # KNN Model : Before Sampling
-
-
 neighbours = np.arange(1,25)
 train_accuracy =np.empty(len(neighbours))
 test_accuracy = np.empty(len(neighbours))
@@ -300,21 +287,7 @@ ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
-
-
-
-
-
-
-
 ########################
-
-
-
-
-
-
-
 
 # %%
 ## Since the data is highly imbalanced, we will move ahead with Undersampling/Upsampling.
@@ -330,9 +303,6 @@ class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 # print the shape of the class
 print('class 0:', class_0.shape)
 print('class 1:', class_1.shape)
-
-#
-
 
 #
 # %%
@@ -496,7 +466,6 @@ knn=KNeighborsClassifier(n_neighbors=x[0],algorithm="kd_tree",n_jobs=-1)
 knn.fit(X_train,y_train.ravel())
 
 # %%
-
 knn = KNeighborsClassifier(n_neighbors = 4) 
 knn.fit(X_train,y_train)
 y_pred_4 = knn.predict(X_test)
@@ -517,21 +486,7 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 
 
-
-
-
-
-
-
 #############################
-
-
-
-
-
-
-
-
 
 #%%
 # Oversampling Technique
@@ -542,7 +497,6 @@ print("Total class of 1 and 0:", data_under['Class'].value_counts())
 # plot the count after over-sampling
 data_over['Class'].value_counts().plot(kind='bar', title='count')
 
-#
 # %%
 # Exploratory Data Analysis for Oversampling
 
