@@ -112,9 +112,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#customer-analysis-overview" id="toc-customer-analysis-overview" class="nav-link" data-scroll-target="#customer-analysis-overview"><span class="toc-section-number">1.1</span>  Customer Analysis Overview</a></li>
   </ul></li>
-  <li><a href="#chapter-3-data-preprocessing" id="toc-chapter-3-data-preprocessing" class="nav-link" data-scroll-target="#chapter-3-data-preprocessing"><span class="toc-section-number">2</span>  Chapter 3: Data Preprocessing</a>
+  <li><a href="#chapter-2-smart-question" id="toc-chapter-2-smart-question" class="nav-link" data-scroll-target="#chapter-2-smart-question"><span class="toc-section-number">2</span>  Chapter 2: SMART Question</a></li>
+  <li><a href="#chapter-3-data-preprocessing" id="toc-chapter-3-data-preprocessing" class="nav-link" data-scroll-target="#chapter-3-data-preprocessing"><span class="toc-section-number">3</span>  Chapter 3: Data Preprocessing</a>
   <ul class="collapse">
-  <li><a href="#load-the-credit-card-file-into-a-dataframe-ccfd_data" id="toc-load-the-credit-card-file-into-a-dataframe-ccfd_data" class="nav-link" data-scroll-target="#load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="toc-section-number">2.0.1</span>  Load the Credit Card File into a DataFrame (CCFD_DATA)</a></li>
+  <li><a href="#load-the-credit-card-file-into-a-dataframe-ccfd_data" id="toc-load-the-credit-card-file-into-a-dataframe-ccfd_data" class="nav-link" data-scroll-target="#load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="toc-section-number">3.0.1</span>  Load the Credit Card File into a DataFrame (CCFD_DATA)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -149,8 +150,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The feature ‘Amount’ is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature ‘Class’ is the response variable and it takes value 1 in case of fraud and 0 otherwise.</p>
 </section>
 </section>
-<section id="chapter-3-data-preprocessing" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Chapter 3: Data Preprocessing</h1>
+<section id="chapter-2-smart-question" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 2: SMART Question</h1>
+<p><strong><em>Which ML model performs best in predictive analysis on credit card transaction dataset to detect the fraudulent transactions from the given dataset </em></strong></p>
+</section>
+<section id="chapter-3-data-preprocessing" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Chapter 3: Data Preprocessing</h1>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -171,8 +176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> gridspec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="load-the-credit-card-file-into-a-dataframe-ccfd_data" class="level3" data-number="2.0.1">
-<h3 data-number="2.0.1" class="anchored" data-anchor-id="load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="header-section-number">2.0.1</span> Load the Credit Card File into a DataFrame (CCFD_DATA)</h3>
+<section id="load-the-credit-card-file-into-a-dataframe-ccfd_data" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="header-section-number">3.0.1</span> Load the Credit Card File into a DataFrame (CCFD_DATA)</h3>
 <p><strong><em>Shape of the dataframe</em></strong></p>
 <div class="cell" data-execution_count="2">
 <details>
@@ -180,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA <span class="op">=</span>pd.read_csv(<span class="st">'creditcard.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>(284807, 31)</code></pre>
 </div>
 </div>
