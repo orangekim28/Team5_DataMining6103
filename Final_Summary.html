@@ -45,7 +45,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chapter-1-introduction" id="toc-chapter-1-introduction" class="nav-link active" data-scroll-target="#chapter-1-introduction"><span class="toc-section-number">1</span>  Chapter 1: Introduction</a></li>
+  <li><a href="#chapter-1-introduction" id="toc-chapter-1-introduction" class="nav-link active" data-scroll-target="#chapter-1-introduction"><span class="toc-section-number">1</span>  Chapter 1: Introduction</a>
+  <ul class="collapse">
+  <li><a href="#customer-analysis-overview" id="toc-customer-analysis-overview" class="nav-link" data-scroll-target="#customer-analysis-overview"><span class="toc-section-number">1.1</span>  Customer Analysis Overview</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -72,6 +75,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Credit card fraud detection is the collective term for the policies, tools, methodologies, and practices that credit card companies and financial institutions take to combat identity fraud and stop fraudulent transactions. It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.</p>
 <p>In this kernel we will use various predictive models to see how accurate they are in detecting whether a transaction is a normal payment or a fraud. As described in the dataset, the features are scaled and the names of the features are not shown due to privacy reasons. Nevertheless, we can still analyze some important aspects of the dataset.</p>
 <p>The aim of this project is to use different methods to handle “Unbalanced Data” and Implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.</p>
+<section id="customer-analysis-overview" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="customer-analysis-overview"><span class="header-section-number">1.1</span> Customer Analysis Overview</h2>
+<p>The dataset contains transactions made by credit cards in September 2013 by European cardholders and this dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.</p>
+<p>It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, we cannot provide the original features and more background information about the data. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are ‘Time’ and ‘Amount’. Feature ‘Time’ contains the seconds elapsed between each transaction and the first transaction in the dataset.</p>
+<p>The feature ‘Amount’ is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature ‘Class’ is the response variable and it takes value 1 in case of fraud and 0 otherwise.</p>
+</section>
 </section>
 
 </main>
