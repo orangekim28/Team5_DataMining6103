@@ -121,3 +121,60 @@ print("Number of Fraud transactions: ", fraud)
 print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
 
 ```
+
+## Summary Statistics
+
+```{python}
+CCFD_DATA.describe()
+```
+
+```{python}
+CCFD_DATA["Class"].value_counts().plot(kind="pie")
+```
+
+***Plot the named features***
+```{python}
+f, axes = plt.subplots(1, 2, figsize=(18,4), sharex = True)
+
+amount_value = CCFD_DATA['Amount'].values 
+time_value = CCFD_DATA['Time'].values
+
+sns.distplot(amount_value, hist=False, color="b", kde_kws={"shade": True}, ax=axes[0]).set_title('Distribution of Amount')
+sns.distplot(time_value, hist=False, color="b", kde_kws={"shade": True}, ax=axes[1]).set_title('Distribution of Time')
+
+plt.show()
+
+```
+
+```{python}
+print("Average Amount in a Fraudulent Transaction: " + str(CCFD_DATA[CCFD_DATA["Class"] == 1]["Amount"].mean()))
+print("Average Amount in a Valid Transaction: " + str(CCFD_DATA[CCFD_DATA["Class"] == 0]["Amount"].mean()))
+```
+
+```{python}
+print("Summary of the feature - Amount" + "\n-------------------------------")
+print(CCFD_DATA["Amount"].describe())
+```
+
+***Plot the distributions of the features***
+```{python}
+# Reorder the columns Amount, Time then the rest
+data_plot = CCFD_DATA.copy()
+amount = data_plot['Amount']
+data_plot.drop(labels=['Amount'], axis=1, inplace = True)
+data_plot.insert(0, 'Amount', amount)
+
+
+columns = data_plot.iloc[:,0:30].columns
+plt.figure(figsize=(12,30*4))
+grids = gridspec.GridSpec(30, 1)
+for grid, index in enumerate(data_plot[columns]):
+    ax = plt.subplot(grids[grid])
+    sns.distplot(data_plot[index][data_plot.Class == 1], hist=False, kde_kws={"shade": True}, bins=50)
+    sns.distplot(data_plot[index][data_plot.Class == 0], hist=False, kde_kws={"shade": True}, bins=50)
+    ax.set_xlabel("")
+    ax.set_title("Distribution of Column: "  + str(index))
+
+plt.show()
+
+```
