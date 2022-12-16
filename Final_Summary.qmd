@@ -30,5 +30,35 @@ It contains only numerical input variables which are the result of a PCA transfo
 
 The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
+# Chapter 3: Data Preprocessing
 
+```{python}
+# Importing the libraries
+
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pylab import rcParams
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix 
+from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeRegressor
+from matplotlib import gridspec
+
+```
+
+### Load the Credit Card File into a DataFrame (CCFD_DATA)
+
+***Shape of the dataframe***
+
+```{python}
+
+CCFD_DATA =pd.read_csv('creditcard.csv')
+CCFD_DATA.shape
+
+```
 
