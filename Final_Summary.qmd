@@ -55,14 +55,69 @@ from matplotlib import gridspec
 
 ```
 
-### Load the Credit Card File into a DataFrame (CCFD_DATA)
+## Load the Credit Card File into a DataFrame (CCFD_DATA)
 
 ***Shape of the dataframe***
 
 ```{python}
-
 CCFD_DATA =pd.read_csv('creditcard.csv')
 CCFD_DATA.shape
 
 ```
 
+### Analyzing the DataFrame
+
+***Viewing the Data***
+
+```{python}
+CCFD_DATA.head()
+```
+
+```{python}
+CCFD_DATA.info()
+```
+
+## Cleaning Data
+
+***Checking for Empty Cells***
+```{python}
+CCFD_DATA.isnull().values.sum()
+```
+
+***Checking for Duplicates Cells***
+```{python}
+CCFD_DATA.duplicated().sum()
+```
+
+### Removing Duplicates
+
+```{python}
+CCFD_DATA.drop_duplicates(keep=False,inplace=True)
+```
+
+***Re-checking the dataframe for duplicates***
+```{python}
+CCFD_DATA.duplicated().sum()
+```
+
+***let's check the class column***
+```{python}
+CCFD_DATA['Class'].value_counts()
+```
+
+## Column Data Type Assessment
+
+```{python}
+CCFD_DATA.dtypes.value_counts()
+```
+
+```{python}
+non_fraud = len(CCFD_DATA[CCFD_DATA.Class == 0])
+fraud = len(CCFD_DATA[CCFD_DATA.Class == 1])
+fraud_percent = (fraud / (fraud + non_fraud)) * 100
+
+print("Number of Genuine transactions: ", non_fraud)
+print("Number of Fraud transactions: ", fraud)
+print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
+
+```

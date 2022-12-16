@@ -96,6 +96,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="Final_Summary_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Final_Summary_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Final_Summary_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -115,7 +118,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#chapter-2-smart-question" id="toc-chapter-2-smart-question" class="nav-link" data-scroll-target="#chapter-2-smart-question"><span class="toc-section-number">2</span>  Chapter 2: SMART Question</a></li>
   <li><a href="#chapter-3-data-preprocessing" id="toc-chapter-3-data-preprocessing" class="nav-link" data-scroll-target="#chapter-3-data-preprocessing"><span class="toc-section-number">3</span>  Chapter 3: Data Preprocessing</a>
   <ul class="collapse">
-  <li><a href="#load-the-credit-card-file-into-a-dataframe-ccfd_data" id="toc-load-the-credit-card-file-into-a-dataframe-ccfd_data" class="nav-link" data-scroll-target="#load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="toc-section-number">3.0.1</span>  Load the Credit Card File into a DataFrame (CCFD_DATA)</a></li>
+  <li><a href="#load-the-credit-card-file-into-a-dataframe-ccfd_data" id="toc-load-the-credit-card-file-into-a-dataframe-ccfd_data" class="nav-link" data-scroll-target="#load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="toc-section-number">3.1</span>  Load the Credit Card File into a DataFrame (CCFD_DATA)</a>
+  <ul class="collapse">
+  <li><a href="#analyzing-the-dataframe" id="toc-analyzing-the-dataframe" class="nav-link" data-scroll-target="#analyzing-the-dataframe"><span class="toc-section-number">3.1.1</span>  Analyzing the DataFrame</a></li>
+  </ul></li>
+  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data"><span class="toc-section-number">3.2</span>  Cleaning Data</a>
+  <ul class="collapse">
+  <li><a href="#removing-duplicates" id="toc-removing-duplicates" class="nav-link" data-scroll-target="#removing-duplicates"><span class="toc-section-number">3.2.1</span>  Removing Duplicates</a></li>
+  </ul></li>
+  <li><a href="#column-data-type-assessment" id="toc-column-data-type-assessment" class="nav-link" data-scroll-target="#column-data-type-assessment"><span class="toc-section-number">3.3</span>  Column Data Type Assessment</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -176,8 +187,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> gridspec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="load-the-credit-card-file-into-a-dataframe-ccfd_data" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="header-section-number">3.0.1</span> Load the Credit Card File into a DataFrame (CCFD_DATA)</h3>
+<section id="load-the-credit-card-file-into-a-dataframe-ccfd_data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="load-the-credit-card-file-into-a-dataframe-ccfd_data"><span class="header-section-number">3.1</span> Load the Credit Card File into a DataFrame (CCFD_DATA)</h2>
 <p><strong><em>Shape of the dataframe</em></strong></p>
 <div class="cell" data-execution_count="2">
 <details>
@@ -185,8 +196,306 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA <span class="op">=</span>pd.read_csv(<span class="st">'creditcard.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>(284807, 31)</code></pre>
+</div>
+</div>
+<section id="analyzing-the-dataframe" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="analyzing-the-dataframe"><span class="header-section-number">3.1.1</span> Analyzing the DataFrame</h3>
+<p><strong><em>Viewing the Data</em></strong></p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="87">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Time</th>
+      <th>V1</th>
+      <th>V2</th>
+      <th>V3</th>
+      <th>V4</th>
+      <th>V5</th>
+      <th>V6</th>
+      <th>V7</th>
+      <th>V8</th>
+      <th>V9</th>
+      <th>...</th>
+      <th>V21</th>
+      <th>V22</th>
+      <th>V23</th>
+      <th>V24</th>
+      <th>V25</th>
+      <th>V26</th>
+      <th>V27</th>
+      <th>V28</th>
+      <th>Amount</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>-1.359807</td>
+      <td>-0.072781</td>
+      <td>2.536347</td>
+      <td>1.378155</td>
+      <td>-0.338321</td>
+      <td>0.462388</td>
+      <td>0.239599</td>
+      <td>0.098698</td>
+      <td>0.363787</td>
+      <td>...</td>
+      <td>-0.018307</td>
+      <td>0.277838</td>
+      <td>-0.110474</td>
+      <td>0.066928</td>
+      <td>0.128539</td>
+      <td>-0.189115</td>
+      <td>0.133558</td>
+      <td>-0.021053</td>
+      <td>149.62</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>1.191857</td>
+      <td>0.266151</td>
+      <td>0.166480</td>
+      <td>0.448154</td>
+      <td>0.060018</td>
+      <td>-0.082361</td>
+      <td>-0.078803</td>
+      <td>0.085102</td>
+      <td>-0.255425</td>
+      <td>...</td>
+      <td>-0.225775</td>
+      <td>-0.638672</td>
+      <td>0.101288</td>
+      <td>-0.339846</td>
+      <td>0.167170</td>
+      <td>0.125895</td>
+      <td>-0.008983</td>
+      <td>0.014724</td>
+      <td>2.69</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>-1.358354</td>
+      <td>-1.340163</td>
+      <td>1.773209</td>
+      <td>0.379780</td>
+      <td>-0.503198</td>
+      <td>1.800499</td>
+      <td>0.791461</td>
+      <td>0.247676</td>
+      <td>-1.514654</td>
+      <td>...</td>
+      <td>0.247998</td>
+      <td>0.771679</td>
+      <td>0.909412</td>
+      <td>-0.689281</td>
+      <td>-0.327642</td>
+      <td>-0.139097</td>
+      <td>-0.055353</td>
+      <td>-0.059752</td>
+      <td>378.66</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>-0.966272</td>
+      <td>-0.185226</td>
+      <td>1.792993</td>
+      <td>-0.863291</td>
+      <td>-0.010309</td>
+      <td>1.247203</td>
+      <td>0.237609</td>
+      <td>0.377436</td>
+      <td>-1.387024</td>
+      <td>...</td>
+      <td>-0.108300</td>
+      <td>0.005274</td>
+      <td>-0.190321</td>
+      <td>-1.175575</td>
+      <td>0.647376</td>
+      <td>-0.221929</td>
+      <td>0.062723</td>
+      <td>0.061458</td>
+      <td>123.50</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.0</td>
+      <td>-1.158233</td>
+      <td>0.877737</td>
+      <td>1.548718</td>
+      <td>0.403034</td>
+      <td>-0.407193</td>
+      <td>0.095921</td>
+      <td>0.592941</td>
+      <td>-0.270533</td>
+      <td>0.817739</td>
+      <td>...</td>
+      <td>-0.009431</td>
+      <td>0.798278</td>
+      <td>-0.137458</td>
+      <td>0.141267</td>
+      <td>-0.206010</td>
+      <td>0.502292</td>
+      <td>0.219422</td>
+      <td>0.215153</td>
+      <td>69.99</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 284807 entries, 0 to 284806
+Data columns (total 31 columns):
+ #   Column  Non-Null Count   Dtype  
+---  ------  --------------   -----  
+ 0   Time    284807 non-null  float64
+ 1   V1      284807 non-null  float64
+ 2   V2      284807 non-null  float64
+ 3   V3      284807 non-null  float64
+ 4   V4      284807 non-null  float64
+ 5   V5      284807 non-null  float64
+ 6   V6      284807 non-null  float64
+ 7   V7      284807 non-null  float64
+ 8   V8      284807 non-null  float64
+ 9   V9      284807 non-null  float64
+ 10  V10     284807 non-null  float64
+ 11  V11     284807 non-null  float64
+ 12  V12     284807 non-null  float64
+ 13  V13     284807 non-null  float64
+ 14  V14     284807 non-null  float64
+ 15  V15     284807 non-null  float64
+ 16  V16     284807 non-null  float64
+ 17  V17     284807 non-null  float64
+ 18  V18     284807 non-null  float64
+ 19  V19     284807 non-null  float64
+ 20  V20     284807 non-null  float64
+ 21  V21     284807 non-null  float64
+ 22  V22     284807 non-null  float64
+ 23  V23     284807 non-null  float64
+ 24  V24     284807 non-null  float64
+ 25  V25     284807 non-null  float64
+ 26  V26     284807 non-null  float64
+ 27  V27     284807 non-null  float64
+ 28  V28     284807 non-null  float64
+ 29  Amount  284807 non-null  float64
+ 30  Class   284807 non-null  int64  
+dtypes: float64(30), int64(1)
+memory usage: 67.4 MB</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="cleaning-data" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="cleaning-data"><span class="header-section-number">3.2</span> Cleaning Data</h2>
+<p><strong><em>Checking for Empty Cells</em></strong></p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.isnull().values.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>0</code></pre>
+</div>
+</div>
+<p><strong><em>Checking for Duplicates Cells</em></strong></p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="90">
+<pre><code>1081</code></pre>
+</div>
+</div>
+<section id="removing-duplicates" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="removing-duplicates"><span class="header-section-number">3.2.1</span> Removing Duplicates</h3>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.drop_duplicates(keep<span class="op">=</span><span class="va">False</span>,inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong><em>Re-checking the dataframe for duplicates</em></strong></p>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="92">
+<pre><code>0</code></pre>
+</div>
+</div>
+<p><strong><em>let’s check the class column</em></strong></p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA[<span class="st">'Class'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<pre><code>0    282493
+1       460
+Name: Class, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="column-data-type-assessment" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="column-data-type-assessment"><span class="header-section-number">3.3</span> Column Data Type Assessment</h2>
+<div class="cell" data-execution_count="10">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="94">
+<pre><code>float64    30
+int64       1
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>non_fraud <span class="op">=</span> <span class="bu">len</span>(CCFD_DATA[CCFD_DATA.Class <span class="op">==</span> <span class="dv">0</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fraud <span class="op">=</span> <span class="bu">len</span>(CCFD_DATA[CCFD_DATA.Class <span class="op">==</span> <span class="dv">1</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fraud_percent <span class="op">=</span> (fraud <span class="op">/</span> (fraud <span class="op">+</span> non_fraud)) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of Genuine transactions: "</span>, non_fraud)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of Fraud transactions: "</span>, fraud)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of Fraud transactions: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(fraud_percent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of Genuine transactions:  282493
+Number of Fraud transactions:  460
+Percentage of Fraud transactions: 0.1626</code></pre>
 </div>
 </div>
 </section>
