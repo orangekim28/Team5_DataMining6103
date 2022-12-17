@@ -133,6 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#exploratory-data-analysis-for-unbalanced-data" id="toc-exploratory-data-analysis-for-unbalanced-data" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-unbalanced-data"><span class="toc-section-number">4.1</span>  Exploratory Data Analysis for Unbalanced Data</a></li>
   <li><a href="#exploratory-data-analysis-for-undersampling" id="toc-exploratory-data-analysis-for-undersampling" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-undersampling"><span class="toc-section-number">4.2</span>  Exploratory Data Analysis for Undersampling</a></li>
+  <li><a href="#exploratory-data-analysis-for-oversampling" id="toc-exploratory-data-analysis-for-oversampling" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-oversampling"><span class="toc-section-number">4.3</span>  Exploratory Data Analysis for Oversampling</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -202,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA <span class="op">=</span>pd.read_csv(<span class="st">'creditcard.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>(284807, 31)</code></pre>
 </div>
 </div>
@@ -214,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="56">
 
 <div>
 
@@ -428,7 +429,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.isnull().values.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>0</code></pre>
 </div>
 </div>
@@ -438,7 +439,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>1081</code></pre>
 </div>
 </div>
@@ -456,7 +457,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="61">
 <pre><code>0</code></pre>
 </div>
 </div>
@@ -466,7 +467,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA[<span class="st">'Class'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>0    282493
 1       460
 Name: Class, dtype: int64</code></pre>
@@ -481,7 +482,7 @@ Name: Class, dtype: int64</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <pre><code>float64    30
 int64       1
 dtype: int64</code></pre>
@@ -512,7 +513,7 @@ Percentage of Fraud transactions: 0.1626</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="65">
 
 <div>
 
@@ -747,11 +748,11 @@ Percentage of Fraud transactions: 0.1626</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA[<span class="st">"Class"</span>].value_counts().plot(kind<span class="op">=</span><span class="st">"pie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>&lt;AxesSubplot:ylabel='Class'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-14-output-2.png" width="405" height="382"></p>
 </div>
 </div>
 <p><strong><em>Plot the named features</em></strong></p>
@@ -815,7 +816,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-15-output-3.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-15-output-3.png" width="1433" height="351"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
@@ -2193,7 +2194,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-18-output-31.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-18-output-31.png" width="988" height="8759"></p>
 </div>
 </div>
 </section>
@@ -2209,7 +2210,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-19-output-1.png" width="1571" height="1511"></p>
 </div>
 </div>
 <p><strong><em>Correlation matrix before Sampling</em></strong></p>
@@ -2220,11 +2221,11 @@ This will become an error in seaborn v0.14.0; please update your code.
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>corr<span class="op">=</span>CCFD_DATA.corr()</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,cmap<span class="op">=</span><span class="st">'BuPu'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-20-output-2.png" width="784" height="666"></p>
 </div>
 </div>
 <p>Since the data is highly imbalanced, we will move ahead with Undersampling/Upsampling. But inorder to see which method works for the data, let’s create model using upsampled and undersampled data. We need balanced data!!!</p>
@@ -2256,11 +2257,11 @@ This will become an error in seaborn v0.14.0; please update your code.
 1    460
 Name: Class, dtype: int64</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>&lt;AxesSubplot:title={'center':'count (target)'}&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-22-output-3.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-22-output-3.png" width="575" height="419"></p>
 </div>
 </div>
 </section>
@@ -2273,7 +2274,7 @@ Name: Class, dtype: int64</code></pre>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-23-output-1.png" width="1542" height="1511"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="23">
@@ -2294,7 +2295,7 @@ Name: Class, dtype: int64</code></pre>
 <span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-24-output-1.png" width="1271" height="717"></p>
 </div>
 </div>
 <p><strong><em>Correlation matrix after Under Sampling</em></strong></p>
@@ -2305,11 +2306,107 @@ Name: Class, dtype: int64</code></pre>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>corr<span class="op">=</span>data_under.corr()</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,cmap<span class="op">=</span><span class="st">'BuPu'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="77">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+<p><img src="Final_Summary_files/figure-html/cell-25-output-2.png" width="793" height="666"></p>
+</div>
+</div>
+<p><strong><em>Oversampling Technique</em></strong></p>
+<div class="cell" data-execution_count="25">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>class_1_over <span class="op">=</span> class_1.sample(class_count_0, replace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>data_over <span class="op">=</span> pd.concat([class_1_over, class_0], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total class of 1 and 0:"</span>, data_under[<span class="st">'Class'</span>].value_counts())</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the count after over-sampling</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>data_over[<span class="st">'Class'</span>].value_counts().plot(kind<span class="op">=</span><span class="st">'bar'</span>, title<span class="op">=</span><span class="st">'count'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total class of 1 and 0: 0    460
+1    460
+Name: Class, dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>&lt;AxesSubplot:title={'center':'count'}&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-26-output-3.png" width="1270" height="637"></p>
+</div>
+</div>
+</section>
+<section id="exploratory-data-analysis-for-oversampling" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="exploratory-data-analysis-for-oversampling"><span class="header-section-number">4.3</span> Exploratory Data Analysis for Oversampling</h2>
+<div class="cell" data-execution_count="26">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>data_over.hist(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>),color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-27-output-1.png" width="1571" height="1511"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>plt.hist(data_over.Time, label<span class="op">=</span><span class="st">'time'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (in seconds)'</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Rel freq.'</span>)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-28-output-1.png" width="1280" height="640"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>plt.hist(data_over.Amount, label<span class="op">=</span><span class="st">'time'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Amount'</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Rel freq.'</span>)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-29-output-1.png" width="1288" height="640"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>genuine <span class="op">=</span> data_over[data_over[<span class="st">'Class'</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>fraud <span class="op">=</span> data_over[data_over[<span class="st">'Class'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> <span class="dv">16</span>, <span class="dv">8</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>f,(ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>f.suptitle(<span class="st">'Amount vs Time of transaction for Oversampling'</span>)</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>ax1.scatter(fraud.Time, fraud.Amount)</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Fraud'</span>)</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>ax2.scatter(genuine.Time, genuine.Amount)</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Genuine'</span>)</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (in seconds)'</span>)</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amount'</span>)</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-30-output-1.png" width="1280" height="717"></p>
+</div>
+</div>
+<p><strong><em>Correlation matrix after Over Sampling</em></strong></p>
+<div class="cell" data-execution_count="30">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>corr<span class="op">=</span>data_over.corr()</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,cmap<span class="op">=</span><span class="st">'BuPu'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-31-output-2.png" width="793" height="666"></p>
 </div>
 </div>
 </section>

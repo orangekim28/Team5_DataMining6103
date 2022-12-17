@@ -246,3 +246,56 @@ plt.figure(figsize=(10,8))
 corr=data_under.corr()
 sns.heatmap(corr,cmap='BuPu')
 ```
+
+***Oversampling Technique***
+```{python}
+class_1_over = class_1.sample(class_count_0, replace = True)
+data_over = pd.concat([class_1_over, class_0], axis=0)
+print("Total class of 1 and 0:", data_under['Class'].value_counts())
+
+# plot the count after over-sampling
+data_over['Class'].value_counts().plot(kind='bar', title='count')
+```
+
+## Exploratory Data Analysis for Oversampling
+```{python}
+data_over.hist(figsize=(20,20),color='green')
+plt.show()
+```
+
+```{python}
+plt.hist(data_over.Time, label='time', edgecolor='black', linewidth=1)
+plt.xlabel('Time (in seconds)')
+plt.ylabel('Rel freq.')
+plt.show()
+```
+
+```{python}
+plt.hist(data_over.Amount, label='time', edgecolor='black', linewidth=1)
+plt.xlabel('Amount')
+plt.ylabel('Rel freq.')
+plt.show()
+```
+
+```{python}
+genuine = data_over[data_over['Class'] == 0]
+fraud = data_over[data_over['Class'] == 1]
+
+rcParams['figure.figsize'] = 16, 8
+f,(ax1, ax2) = plt.subplots(2, 1, sharex=True)
+f.suptitle('Amount vs Time of transaction for Oversampling')
+ax1.scatter(fraud.Time, fraud.Amount)
+ax1.set_title('Fraud')
+ax2.scatter(genuine.Time, genuine.Amount)
+ax2.set_title('Genuine')
+plt.xlabel('Time (in seconds)')
+plt.ylabel('Amount')
+plt.show()
+```
+
+***Correlation matrix after Over Sampling***
+```{python}
+plt.figure(figsize=(10,8))
+corr=data_over.corr()
+sns.heatmap(corr,cmap='BuPu')
+```
