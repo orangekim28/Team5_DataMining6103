@@ -129,6 +129,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#column-data-type-assessment" id="toc-column-data-type-assessment" class="nav-link" data-scroll-target="#column-data-type-assessment"><span class="toc-section-number">3.3</span>  Column Data Type Assessment</a></li>
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="toc-section-number">3.4</span>  Summary Statistics</a></li>
   </ul></li>
+  <li><a href="#chapter-4-exploratory-data-analysis" id="toc-chapter-4-exploratory-data-analysis" class="nav-link" data-scroll-target="#chapter-4-exploratory-data-analysis"><span class="toc-section-number">4</span>  Chapter 4: Exploratory Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-data-analysis-for-unbalanced-data" id="toc-exploratory-data-analysis-for-unbalanced-data" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-unbalanced-data"><span class="toc-section-number">4.1</span>  Exploratory Data Analysis for Unbalanced Data</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -154,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="1"><span class="header-section-number">1</span> Chapter 1: Introduction</h1>
 <p>Credit card fraud detection is the collective term for the policies, tools, methodologies, and practices that credit card companies and financial institutions take to combat identity fraud and stop fraudulent transactions. It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.</p>
 <p>In this kernel we will use various predictive models to see how accurate they are in detecting whether a transaction is a normal payment or a fraud. As described in the dataset, the features are scaled and the names of the features are not shown due to privacy reasons. Nevertheless, we can still analyze some important aspects of the dataset.</p>
-<p>The aim of this project is to use different methods to handle “Unbalanced Data” and Implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.</p>
+<p>The aim of this project is to use different methods to handle “Unbalanced Data” and implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.</p>
 <section id="customer-analysis-overview" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="customer-analysis-overview"><span class="header-section-number">1.1</span> Customer Analysis Overview</h2>
 <p>The dataset contains transactions made by credit cards in September 2013 by European cardholders and this dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.</p>
@@ -197,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA <span class="op">=</span>pd.read_csv(<span class="st">'creditcard.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="131">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>(284807, 31)</code></pre>
 </div>
 </div>
@@ -209,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="132">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
@@ -423,7 +427,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.isnull().values.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="134">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0</code></pre>
 </div>
 </div>
@@ -433,7 +437,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="135">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>1081</code></pre>
 </div>
 </div>
@@ -451,7 +455,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="137">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>0</code></pre>
 </div>
 </div>
@@ -461,7 +465,7 @@ memory usage: 67.4 MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA[<span class="st">'Class'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="138">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>0    282493
 1       460
 Name: Class, dtype: int64</code></pre>
@@ -476,7 +480,7 @@ Name: Class, dtype: int64</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="139">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>float64    30
 int64       1
 dtype: int64</code></pre>
@@ -507,7 +511,7 @@ Percentage of Fraud transactions: 0.1626</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="141">
+<div class="cell-output cell-output-display" data-execution_count="12">
 
 <div>
 
@@ -742,11 +746,11 @@ Percentage of Fraud transactions: 0.1626</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA[<span class="st">"Class"</span>].value_counts().plot(kind<span class="op">=</span><span class="st">"pie"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="142">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>&lt;AxesSubplot:ylabel='Class'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-14-output-2.png" width="405" height="382"></p>
+<p><img src="Final_Summary_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong><em>Plot the named features</em></strong></p>
@@ -764,7 +768,7 @@ Percentage of Fraud transactions: 0.1626</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\4237533761.py:6: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\4237533761.py:6: UserWarning:
 
 
 
@@ -787,7 +791,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\4237533761.py:7: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\4237533761.py:7: UserWarning:
 
 
 
@@ -810,7 +814,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-15-output-3.png" width="1433" height="351"></p>
+<p><img src="Final_Summary_files/figure-html/cell-15-output-3.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
@@ -868,7 +872,7 @@ Name: Amount, dtype: float64</code></pre>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -889,51 +893,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -956,7 +916,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -977,51 +937,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1044,7 +960,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1065,51 +981,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1132,7 +1004,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1153,51 +1025,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1220,7 +1048,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1241,51 +1069,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1308,7 +1092,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1329,51 +1113,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1396,7 +1136,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1417,51 +1157,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1484,7 +1180,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1505,51 +1201,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1572,7 +1224,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1593,51 +1245,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1660,7 +1268,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1681,51 +1289,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1748,7 +1312,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1769,51 +1333,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1836,7 +1356,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1857,51 +1377,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -1924,7 +1400,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -1945,51 +1421,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -2012,7 +1444,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -2033,51 +1465,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
-
-
-
-`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
-
-Please adapt your code to use either `displot` (a figure-level function with
-similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
-
-For a guide to updating your code to use the new functions, please see
-https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
-
-
-C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
-
-
-
-`shade` is now deprecated in favor of `fill`; setting `fill=True`.
-This will become an error in seaborn v0.14.0; please update your code.
-
-
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -2100,7 +1488,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -2121,7 +1509,7 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -2144,7 +1532,7 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:13: UserWarning:
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
 
 
 
@@ -2165,7 +1553,623 @@ C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: Futur
 This will become an error in seaborn v0.14.0; please update your code.
 
 
-C:\Users\duvvi\AppData\Local\Temp\ipykernel_8452\1570801392.py:14: UserWarning:
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:13: UserWarning:
+
+
+
+`distplot` is a deprecated function and will be removed in seaborn v0.14.0.
+
+Please adapt your code to use either `displot` (a figure-level function with
+similar flexibility) or `kdeplot` (an axes-level function for kernel density plots).
+
+For a guide to updating your code to use the new functions, please see
+https://gist.github.com/mwaskom/de44147ed2974457ad6372750bbe5751
+
+
+C:\Users\duvvi\miniconda3\lib\site-packages\seaborn\distributions.py:2517: FutureWarning:
+
+
+
+`shade` is now deprecated in favor of `fill`; setting `fill=True`.
+This will become an error in seaborn v0.14.0; please update your code.
+
+
+C:\Users\duvvi\AppData\Local\Temp\ipykernel_22740\1570801392.py:14: UserWarning:
 
 
 
@@ -2188,8 +2192,52 @@ This will become an error in seaborn v0.14.0; please update your code.
 </code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final_Summary_files/figure-html/cell-18-output-31.png" width="988" height="8759"></p>
+<p><img src="Final_Summary_files/figure-html/cell-18-output-31.png" class="img-fluid"></p>
 </div>
+</div>
+</section>
+</section>
+<section id="chapter-4-exploratory-data-analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Chapter 4: Exploratory Data Analysis</h1>
+<section id="exploratory-data-analysis-for-unbalanced-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="exploratory-data-analysis-for-unbalanced-data"><span class="header-section-number">4.1</span> Exploratory Data Analysis for Unbalanced Data</h2>
+<div class="cell" data-execution_count="18">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>CCFD_DATA.hist(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>),color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong><em>Correlation matrix before Sampling</em></strong></p>
+<div class="cell" data-execution_count="19">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>corr<span class="op">=</span>CCFD_DATA.corr()</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,cmap<span class="op">=</span><span class="st">'BuPu'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final_Summary_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Since the data is highly imbalanced, we will move ahead with Undersampling/Upsampling. But inorder to see which method works for the data, let’s create model using upsampled and undersampled data. We need balanced data!!!</p>
+<div class="cell" data-execution_count="20">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># class count</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>class_count_0, class_count_1 <span class="op">=</span> CCFD_DATA[<span class="st">'Class'</span>].value_counts()</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate class</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co"># It takes value 1 in case of fraud and 0 otherwise</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>class_0 <span class="op">=</span> CCFD_DATA[CCFD_DATA[<span class="st">'Class'</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>class_1 <span class="op">=</span> CCFD_DATA[CCFD_DATA[<span class="st">'Class'</span>] <span class="op">==</span> <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 </section>

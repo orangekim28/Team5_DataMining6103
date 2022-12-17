@@ -20,7 +20,7 @@ Credit card fraud detection is the collective term for the policies, tools, meth
 
 In this kernel we will use various predictive models to see how accurate they are in detecting whether a transaction is a normal payment or a fraud. As described in the dataset, the features are scaled and the names of the features are not shown due to privacy reasons. Nevertheless, we can still analyze some important aspects of the dataset.
 
-The aim of this project is to use different methods to handle “Unbalanced Data” and Implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.
+The aim of this project is to use different methods to handle “Unbalanced Data” and implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.
 
 ## Customer Analysis Overview
 
@@ -178,3 +178,32 @@ for grid, index in enumerate(data_plot[columns]):
 plt.show()
 
 ```
+
+# Chapter 4: Exploratory Data Analysis
+
+## Exploratory Data Analysis for Unbalanced Data
+
+```{python}
+CCFD_DATA.hist(figsize=(20,20),color='blue')
+plt.show()
+```
+
+***Correlation matrix before Sampling***
+```{python}
+plt.figure(figsize=(10,8))
+corr=CCFD_DATA.corr()
+sns.heatmap(corr,cmap='BuPu')
+```
+
+Since the data is highly imbalanced, we will move ahead with Undersampling/Upsampling. But inorder to see which method works for the data, let's create model using upsampled and undersampled data. We need balanced data!!!
+
+```{python}
+# class count
+class_count_0, class_count_1 = CCFD_DATA['Class'].value_counts()
+
+# Separate class
+# It takes value 1 in case of fraud and 0 otherwise
+class_0 = CCFD_DATA[CCFD_DATA['Class'] == 0]
+class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
+```
+
