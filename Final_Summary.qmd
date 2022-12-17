@@ -14,7 +14,7 @@ format:
 jupyter: python3
 ---
 
-# Chapter 1: Introduction
+# Chapter 1 : Introduction
 
 Credit card fraud detection is the collective term for the policies, tools, methodologies, and practices that credit card companies and financial institutions take to combat identity fraud and stop fraudulent transactions. It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.
 
@@ -30,11 +30,11 @@ It contains only numerical input variables which are the result of a PCA transfo
 
 The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
-# Chapter 2: SMART Question
+# Chapter 2 : SMART Question
 
 ***Which ML model performs best in predictive analysis on credit card transaction dataset to detect the fraudulent transactions from the given dataset ***
 
-# Chapter 3: Data Preprocessing
+# Chapter 3 : Data Preprocessing
 
 ```{python}
 # Importing the libraries
@@ -179,7 +179,7 @@ plt.show()
 
 ```
 
-# Chapter 4: Exploratory Data Analysis
+# Chapter 4 : Exploratory Data Analysis
 
 ## Exploratory Data Analysis for Unbalanced Data
 
@@ -302,7 +302,7 @@ corr=data_over.corr()
 sns.heatmap(corr,cmap='BuPu')
 ```
 
-# ML Modeling
+# Chapter 5 : ML Modeling
 
 ## Modeling for Unbalanced Data
 
@@ -770,3 +770,7 @@ ax.set_title("Confusion Matrix")
 ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 ```
+
+# Chapter 6 : Conclusion
+
+# Chapter 7 : Bibliography
