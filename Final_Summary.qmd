@@ -23,7 +23,6 @@ In this kernel we will use various predictive models to see how accurate they ar
 
 The aim of this project is to use different methods to handle “Unbalanced Data” and implement different ML Algorithms and identify the best model for predicting Credit Card Fraud Detection.
 
-
 The dataset contains transactions made by credit cards in September 2013 by European cardholders and this dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.
 
 It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, we cannot provide the original features and more background information about the data. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are 'Time' and 'Amount'. Feature 'Time' contains the seconds elapsed between each transaction and the first transaction in the dataset.
@@ -33,7 +32,7 @@ The feature 'Amount' is the transaction Amount, this feature can be used for exa
 # SMART Question
 
 Here is a SMART question for our project:
-***Which ML model performs best in predictive analysis on credit card transaction dataset to detect the fraudulent transactions from the given dataset ***
+***Which ML model performs best in predictive analysis on credit card transaction dataset to detect the fraudulent transactions from the given dataset***
 
 # Data Preprocessing
 
@@ -59,12 +58,10 @@ warnings.filterwarnings("ignore")
 
 ## Load the Credit Card File into a DataFrame (CCFD_DATA)
 
-
 ```{python}
 CCFD_DATA =pd.read_csv('creditcard.csv')
 CCFD_DATA.shape
 ```
-
 
 The dataset contains transactions made by credit cards in September 2013 by European cardholders and this dataset presents transactions that occurred in two days. Here we have 284,807 observations and 31 variables. 
 
@@ -104,11 +101,9 @@ CCFD_DATA.drop_duplicates(keep=False,inplace=True)
 ```
 
 Once again, we checked for a duplicate of cells and came out to be none. 
-
 ```{python}
 CCFD_DATA.duplicated().sum()
 ```
-
 
 ## Column Data Type Assessment
 
@@ -211,7 +206,6 @@ class_count_0, class_count_1 = CCFD_DATA['Class'].value_counts()
 class_0 = CCFD_DATA[CCFD_DATA['Class'] == 0]
 class_1 = CCFD_DATA[CCFD_DATA['Class'] == 1]
 ```
-
 
 ***Undersampling Technique***
 ```{python}
