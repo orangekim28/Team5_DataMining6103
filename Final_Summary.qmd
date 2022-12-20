@@ -127,6 +127,8 @@ print("Percentage of Fraud transactions: {:.4f}".format(fraud_percent))
 
 ```
 
+There are 460 fraudulent transactions out of 284,807 transactions in total. 
+
 ## Summary Statistics
 
 ```{python}
@@ -136,6 +138,8 @@ CCFD_DATA.describe()
 ```{python}
 CCFD_DATA["Class"].value_counts().plot(kind="pie")
 ```
+
+Looking at this pie chart, we can see that this dataset is highly imbalanced.
 
 ***Plot the named features***
 ```{python}
