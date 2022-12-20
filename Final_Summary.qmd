@@ -1,5 +1,6 @@
 ---
 title: "Credit Card Fraud Detection"
+author: "Aveline Mariya Shaji, Kyuri Kim, Satya Bharath Reddy Duvvi"
 format:
   html:
     code-fold: true
@@ -14,7 +15,7 @@ format:
 jupyter: python3
 ---
 
-# Chapter 1 : Introduction
+# Introduction
 
 Credit card fraud detection is the collective term for the policies, tools, methodologies, and practices that credit card companies and financial institutions take to combat identity fraud and stop fraudulent transactions. It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.
 
@@ -30,11 +31,11 @@ It contains only numerical input variables which are the result of a PCA transfo
 
 The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
-# Chapter 2 : SMART Question
+# SMART Question
 
 ***Which ML model performs best in predictive analysis on credit card transaction dataset to detect the fraudulent transactions from the given dataset ***
 
-# Chapter 3 : Data Preprocessing
+# Data Preprocessing
 
 ```{python}
 # Importing the libraries
@@ -52,7 +53,8 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeRegressor
 from matplotlib import gridspec
-
+import warnings
+warnings.filterwarnings("ignore")
 ```
 
 ## Load the Credit Card File into a DataFrame (CCFD_DATA)
@@ -179,7 +181,7 @@ plt.show()
 
 ```
 
-# Chapter 4 : Exploratory Data Analysis
+# Exploratory Data Analysis
 
 ## Exploratory Data Analysis for Unbalanced Data
 
@@ -302,11 +304,16 @@ corr=data_over.corr()
 sns.heatmap(corr,cmap='BuPu')
 ```
 
-# Chapter 5 : ML Modeling
+# Modeling
 
 ## Modeling for Unbalanced Data
 
+Before proceeding with sampling techniques we implemented the modeling for Unbalanced Data to check how the Accuracy, Precision, Recall, and F1 Score will be.
+
 ***Splitting the Data before Sampling***
+
+Before proceeding with the modeling for Unbalanced Data we have to separate the original data frame into training and testing sets and separate the features from the labels.
+
 ```{python}
 X=CCFD_DATA.drop(['Class'],axis=1)
 y=CCFD_DATA['Class']
@@ -459,7 +466,11 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 ```
 
+We can observe that sampling is necessary to fit these models either with the data frames that were undersampled or oversampled (in order for our models to detect the patterns) and test it on the original testing set to improve Precision, Recall, and F1 Score.
+
 ## Modeling for Under Sampling Data
+
+In this phase of the project, we will implement "Random Under Sampling" which basically consists of removing data in order to have a more balanced dataset and thus preventing our models from overfitting.
 
 ***Splitting the Data for Under Sampling***
 ```{python}
@@ -467,6 +478,8 @@ X=data_under.drop(['Class'],axis=1)
 y=data_under['Class']
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=123)
 ```
+
+In this section, we will train four types of classifiers and decide which classifier will be more effective in detecting fraud transactions.
 
 ### Model 1 : Random Forest Classifier - Under Sampling
 
@@ -771,6 +784,6 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 ```
 
-# Chapter 6 : Conclusion
+# Conclusion
 
-# Chapter 7 : Bibliography
+# References
