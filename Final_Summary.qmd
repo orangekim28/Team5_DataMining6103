@@ -631,7 +631,8 @@ ax.set_xlabel("Predicted")
 
 ## Modeling for Over Sampling Data
 
-Now, we will implement a 'Random Over Sampling' technique to our dataset. This is basically creating new datasets. 
+Now, we will implement a 'Random Over Sampling' technique to our dataset. This is basically adding more examples from the minority class, in this case, 'Fraud' transactions.
+
 ***Correlation matrix after Over Sampling***
 ```{python}
 plt.figure(figsize=(10,8))
@@ -639,8 +640,10 @@ corr=data_over.corr()
 sns.heatmap(corr,cmap='BuPu')
 ```
 
+This is the correlation matrix of over-sampled dataset. This shows the same correlation to the under-sampled dataset. 
 
 ***Splitting the Data for Over Sampling***
+Here, again, we split this over-sampled dataset into train (70%) and test (30%) dataset. 
 ```{python}
 X=data_over.drop(['Class'],axis=1)
 y=data_over['Class']
@@ -660,6 +663,9 @@ print("The precision is", precision_score(y_test, y_pred))
 print("The recall is", recall_score(y_test, y_pred))
 print("The F1 score is", f1_score(y_test, y_pred))
 ```
+
+First, we created a model with random forest classifier. 
+Here as you can see the accuracy, precision, and recall rate are all showing number close to or exactly 1, which means that this model is overfitted. 
 
 ***Classification report***
 ```{python}
@@ -688,6 +694,10 @@ print("The recall is", recall_score(y_test, y_pred_2))
 print("The F1 score is", f1_score(y_test, y_pred_2))
 ```
 
+Second, we built a model wth Logistic Regression. 
+Here, the accuracy is 0.94, precision is 0.96, and recall is 0.92. This is still considered very high, eventhough the numbers imroved from the previous Random Forest model, this model is overfitted.
+
+
 ***Classification report***
 ```{python}
 print(classification_report(y_test, y_pred_2))
@@ -715,6 +725,9 @@ print("The recall is", recall_score(y_test, y_pred_3))
 print("The F1 score is", f1_score(y_test, y_pred_3))
 ```
 
+Third, we built a model with Decision tree classifier. 
+Here, again, accuracy, precision, and recall rate is close to or exactly 1, which means that this is too overfitted. 
+
 ***Classification report***
 ```{python}
 print(classification_report(y_test, y_pred_3))
@@ -730,6 +743,9 @@ ax.set_xlabel("Predicted")
 ```
 
 ### Model 4 : KNN Model - Over Sampling
+
+Lastly, we built a model using KNN classifier. 
+
 
 ```{python}
 neighbours = np.arange(1,25)
@@ -768,6 +784,7 @@ knn=KNeighborsClassifier(n_neighbors=x[0],algorithm="kd_tree",n_jobs=-1)
 knn.fit(X_train,y_train.ravel())
 ```
 
+
 ***KNN results***
 ```{python}
 knn = KNeighborsClassifier(n_neighbors = 2) 
@@ -779,6 +796,8 @@ print("The precision is", precision_score(y_test, y_pred_4))
 print("The recall is", recall_score(y_test, y_pred_4))
 print("The F1 score is", f1_score(y_test, y_pred_4))
 ```
+
+Here, again, we have a very high accuracy, precision, and recall rate, which is 1. Thus, even this KNN gives us overfitted model.  
 
 ***Classification report***
 ```{python}
@@ -794,7 +813,11 @@ ax.set_ylabel("Real Value")
 ax.set_xlabel("Predicted")
 ```
 
+Overall, we conclude that over-sampled dataset gives us overfitted models. Thus, maybe using over-sampling is not suitable for this dataset. 
+
 # Conclusion
+
+
 
 # References
 Credit Card Fraud Detection. (n.d). Kaggle. Retrieved from https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
