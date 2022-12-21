@@ -152,6 +152,8 @@ plt.show()
 
 ```
 
+The first distribution plot is for 'Amount'. This one is strongly right skewed which probably means that the transaction amounts are mostly below $1000. We can see that even on the below summary, which shows $25,691 as the maximum. 
+
 ```{python}
 print("Average Amount in a Fraudulent Transaction: " + str(CCFD_DATA[CCFD_DATA["Class"] == 1]["Amount"].mean()))
 print("Average Amount in a Valid Transaction: " + str(CCFD_DATA[CCFD_DATA["Class"] == 0]["Amount"].mean()))
@@ -162,6 +164,10 @@ print("Summary of the feature - Amount" + "\n-------------------------------")
 print(CCFD_DATA["Amount"].describe())
 ```
 
+
+***Plot the distributions of every feature***
+
+Here are distribution plots for all the features, red representing genuine transactions and blue representing fraudulent transactions. Here you can tell that for some features it shows the same pattern however some do not.  
 
 ```{python}
 # Reorder the columns Amount, Time then the rest
@@ -625,6 +631,7 @@ ax.set_xlabel("Predicted")
 
 ## Modeling for Over Sampling Data
 
+Now, we will implement a 'Random Over Sampling' technique to our dataset. This is basically creating new datasets. 
 ***Correlation matrix after Over Sampling***
 ```{python}
 plt.figure(figsize=(10,8))
@@ -790,3 +797,6 @@ ax.set_xlabel("Predicted")
 # Conclusion
 
 # References
+Credit Card Fraud Detection. (n.d). Kaggle. Retrieved from https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+
+10 Techniques to deal with Imbalanced Classes in Machine Learning. (2020,July 23). Analytics Vidhya. Retrieved from https://www.analyticsvidhya.com/blog/2020/07/10-techniques-to-deal-with-class-imbalance-in-machine-learning/
